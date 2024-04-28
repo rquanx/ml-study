@@ -88,14 +88,54 @@ iloc(): 基于position(整数-integer)进行数据选择
 
 读取前5行
 
+#### tail
+读取最后5行
+
+#### to_numeric
+
+```python
+
+# 将某一列数据转成数值
+df['Rings'] = pd.to_numeric(df['Rings'])
+```
+#### columns
+
+```python
+
+df.columns # 读取或者更新表头
+```
+
+#### drop
+
+```python
+
+# 根据index删除？删除最后一行
+dx.drop(dx.index[-1])
+```
+
+#### replace
+
+```python
+# 将某一列的某些值进行更新，replace方法已经被废弃！
+df['Sex'] = df.Sex.replace({'M':0, 'F':1, 'I':2})
+```
+
+#### cut
+
+```python
+
+# 根据bins对数据值划分区间，然后分别替换
+df['Rings'] = pd.cut(df.Rings, bins=[0, 10, 20, 30], labels=['small','middle','large'])
+```
+
 #### describe
 
 它用于生成有关数据的统计摘要。这个统计摘要包括了数据列的数量、均值、标准差、最小值、25% 分位数、中位数（50% 分位数）、75% 分位数和最大值
 
 #### concat
 
-# axis 默认为0,也就是纵向上进行合并。沿着连接的轴,1 就是横向合并
-# 1： concat就是行对齐，然后将不同列名称的两张表合并
+axis 默认为0,也就是纵向上进行合并。沿着连接的轴,1 就是横向合并
+1： concat就是行对齐，然后将不同列名称的两张表合并
 print(pd.concat([features, target], axis=1).head())
 
 ### jupyter notebook
@@ -309,6 +349,15 @@ results_smf_full.summary2()  # 输出模型摘要
 
 
 ### sklearn.model_selection
+
+#### KFold
+
+进行K折数据
+
+#### cross_val_score
+
+k折数据，交叉验证
+
 
 ### sklearn.naive_bayes
 
