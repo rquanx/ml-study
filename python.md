@@ -144,6 +144,18 @@ print(pd.concat([features, target], axis=1).head())
 
 `%matplotlib inline`:的作用是将Matplotlib图形嵌入到Notebook单元格中，使得图形能够在Notebook中直接显示，而不是在新窗口中弹出
 
+### sklearn.cluster
+
+#### k_means
+
+聚类直接实现
+
+- `X`：表示需要聚类的数据。
+    
+- `n_clusters`：表示聚类的个数，也就是 K 值。
+
+
+
 ### sklearn.decomposition
 
 #### PCA
@@ -381,6 +393,20 @@ X_train, X_test, y_train, y_test = train_test_split(
 ```
 
 ### sklearn.datasets
+
+#### make_blobs
+
+生成特定的团状数据
+
+- `n_samples`：表示生成数据总个数,默认为 100 个。
+    
+- `n_features`：表示每一个样本的特征个数，默认为 2 个。
+    
+- `centers`：表示中心点的个数，默认为 3 个。
+    
+- `center_box`：表示每一个中心的边界,默认为 -10.0到10.0。
+    
+- `random_state`：表示生成数据的随机数种子。
 
 #### make_circles
 
