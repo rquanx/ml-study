@@ -146,6 +146,10 @@ print(pd.concat([features, target], axis=1).head())
 
 ### sklearn.cluster
 
+##### MiniBatchKMeans
+
+
+
 #### k_means
 
 聚类直接实现
