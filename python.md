@@ -60,6 +60,14 @@ argmin: 排序后最小的元素的索引
 
 argsort：从小到大排序后的索引数组
 
+
+cov：协方差矩阵计算
+
+mat：转矩阵？
+
+np.linalg.eig：计算特征值、特征向量
+
+dot: 点乘
 ### pandas
 
 #### [[]]
@@ -146,9 +154,21 @@ print(pd.concat([features, target], axis=1).head())
 
 ### sklearn.cluster
 
-##### MiniBatchKMeans
+#### Birch
 
+Birch 聚类
 
+#### MiniBatchKMeans
+
+#### AgglomerativeClustering
+
+层次聚类
+
+n_clusters: 表示最终要查找类别的数量，例如上面的 2 类。
+
+metric: 有 euclidean（欧式距离）, l1（L1 范数）, l2（L2 范数）, manhattan（曼哈顿距离）等可选。
+
+linkage: 连接方法：ward（单连接）, complete（全连接）, average（平均连接）可选。
 
 #### k_means
 
@@ -165,6 +185,15 @@ print(pd.concat([features, target], axis=1).head())
 #### PCA
 
 数据降维
+
+n_components= 表示需要保留主成分（特征）的数量。
+
+copy= 表示针对原始数据降维还是针对原始数据副本降维。当参数为 False 时，降维后的原始数据会发生改变，这里默认为 True。
+
+whiten= 白化表示将特征之间的相关性降低，并使得每个特征具有相同的方差。
+
+svd_solver= 表示奇异值分解 SVD 的方法。有 4 参数，分别是：auto, full, arpack, randomized。
+
 
 ### sklearn.linear_model
 
@@ -397,6 +426,16 @@ X_train, X_test, y_train, y_test = train_test_split(
 ```
 
 ### sklearn.datasets
+
+#### load_digits
+
+images：8x8 矩阵，记录每张手写字符图像对应的像素灰度值
+
+data：将 images 对应的 8x8 矩阵转换为行向量
+
+target：记录 1797 张影像各自代表的数字
+
+数据集：包含由 1797 张数字 0 到 9 的手写字符影像转换后的数字矩阵，目标值是 0-9
 
 #### make_blobs
 
