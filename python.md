@@ -28,12 +28,23 @@ for i, image in enumerate(faces.images[:5]):
     # 既获得数据又获得 索引
 ```
 
+## 重载
+
+### __getitem__
+
+重载 [] 能力，pandas 通过重载实现大量数据 hack 操作
+
+
 ## 库
 
 ### matplotlib.pyplot
 
 plot: 画线
 scatter：画散点
+- alpha： 绘制点的透明度
+- c: 绘制点的颜色？
+- cmap：按类别进行颜色合并？
+
 legend: 绘制LabeL
 ```py
 from matplotlib import pyplot as plt
@@ -153,6 +164,22 @@ print(pd.concat([features, target], axis=1).head())
 `%matplotlib inline`:的作用是将Matplotlib图形嵌入到Notebook单元格中，使得图形能够在Notebook中直接显示，而不是在新窗口中弹出
 
 ### sklearn.cluster
+
+#### DBSCAN
+
+密度聚类
+
+#### hierarchy
+
+##### linkage
+
+进行层次聚类/凝聚聚类
+
+##### dendrogram
+
+绘制聚类数
+
+
 
 #### Birch
 
@@ -436,6 +463,10 @@ data：将 images 对应的 8x8 矩阵转换为行向量
 target：记录 1797 张影像各自代表的数字
 
 数据集：包含由 1797 张数字 0 到 9 的手写字符影像转换后的数字矩阵，目标值是 0-9
+
+#### make_moons
+
+生成月牙状数据
 
 #### make_blobs
 
