@@ -78,6 +78,8 @@ mat：转矩阵？
 
 np.linalg.eig：计算特征值、特征向量
 
+np.linalg.norm: 计算欧氏距离
+
 dot: 点乘
 ### pandas
 
@@ -164,6 +166,22 @@ print(pd.concat([features, target], axis=1).head())
 `%matplotlib inline`:的作用是将Matplotlib图形嵌入到Notebook单元格中，使得图形能够在Notebook中直接显示，而不是在新窗口中弹出
 
 ### sklearn.cluster
+
+##### MeanShift
+
+均值漂移聚类
+
+##### AffinityPropagation
+
+亲和传播聚类
+
+- damping：阻尼因子，避免数值振荡。
+- max_iter：最大迭代次数。
+- affinity：亲和评价方法，默认为欧式距离。
+
+##### SpectralClustering
+
+谱聚类
 
 #### DBSCAN
 
