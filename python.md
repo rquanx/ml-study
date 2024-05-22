@@ -15,6 +15,31 @@ x = [f(tvParams[0],i) for i in x_temp]
 
 可对一维数组进行加和
 
+### zip
+
+将两个数组合并进行遍历？
+
+```python
+
+cluster_names = ['KMeans', 'MiniBatchKMeans', 'AffinityPropagation', 
+                 'MeanShift', 'SpectralClustering', 'AgglomerativeClustering', 'Birch', 'DBSCAN']
+
+
+cluster_estimators = [
+    cluster.KMeans(n_clusters=2),
+    cluster.MiniBatchKMeans(n_clusters=2),
+    cluster.AffinityPropagation(),
+    cluster.MeanShift(),
+    cluster.SpectralClustering(n_clusters=2),
+    cluster.AgglomerativeClustering(n_clusters=2),
+    cluster.Birch(n_clusters=2),
+    cluster.DBSCAN()
+]
+
+for name,e in zip(cluster_names, cluster_estimators):
+	pass
+```
+
 ## 循环
 
 ### for in
@@ -36,6 +61,26 @@ for i, image in enumerate(faces.images[:5]):
 
 
 ## 库
+
+### mlxtend
+
+#### preprocessing
+
+##### TransactionEncoder
+
+将列表数据转换为 Apriori 算法 API 可用的格式
+
+类似于独热编码，可以提取数据集中的不重复项，并将每个数据转换为等长度的布尔值表示
+
+#### frequent_patterns
+
+##### apriori
+
+寻找频繁项集
+
+##### association_rules
+
+生成关联规则
 
 ### matplotlib.pyplot
 
