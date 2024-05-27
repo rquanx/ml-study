@@ -381,7 +381,7 @@ from matplotlib import pyplot as plt
 ```
 
 imshow：绘制图像，只要是二维数据即可，不需要额外处理
-
+ylim：限定 y 轴范围
 ### numpy
 
 numpy.sum: 可以处理多维数组的加和
@@ -510,6 +510,12 @@ df['Rings'] = pd.cut(df.Rings, bins=[0, 10, 20, 30], labels=['small','middle','l
 axis 默认为0,也就是纵向上进行合并。沿着连接的轴,1 就是横向合并
 1： concat就是行对齐，然后将不同列名称的两张表合并
 print(pd.concat([features, target], axis=1).head())
+
+#### plotting
+
+##### autocorrelation_plot
+
+绘制自相关图
 
 ### jupyter notebook
 
@@ -771,6 +777,26 @@ r2_score(y1, model1.predict(x)), r2_score(y2, model2.predict(x))
 支持向量机分类器
 
 ### statsmodels.api
+
+#### tsa.stattools
+
+##### arma_order_select_ic
+
+
+
+#### stats.diagnostic
+
+##### acorr_ljungbox
+
+随机序列判断
+
+计算 LB 统计量，默认会返回 LB 统计量和 LB 统计量的 P 值。如果 LB 统计量的 P 值小于 `0.05`，我们则认为该序列为非随机序列，否则就为随机序列
+
+#### graphics.tsaplots
+
+##### plot_acf
+
+绘制自相关图的函数
 
 #### OLS
 
