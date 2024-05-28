@@ -770,6 +770,10 @@ from sklearn.metrics import r2_score
 r2_score(y1, model1.predict(x)), r2_score(y2, model2.predict(x))
 ```
 
+### joblib
+
+保存模型，模型存为 `.pkl` 二进制文件
+
 ### sklearn.svm
 
 #### SVC
