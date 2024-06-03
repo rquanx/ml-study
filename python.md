@@ -852,6 +852,25 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 ```
 
+
+### sklearn.neural_network
+
+
+#### MLPClassifier
+
+实现了具有反向传播算法的多层神经网络结构
+
+- hidden_layer_sizes: 定义隐含层及包含的神经元数量，(20, 20) 代表 2 个隐含层各有 20 个神经元。
+- activation: 激活函数，有 identity（线性）, logistic, tanh, relu 可选。
+- solver: 求解方法，有 lbfgs（拟牛顿法），sgd（随机梯度下降），adam（改进型 sgd） 可选。adam 在相对较大的数据集上效果比较好（上千个样本），对小数据集而言，lbfgs 收敛更快效果也很好。 
+- alpha: 正则化项参数。
+- learning_rate: 学习率调整策略，constant（不变），invscaling（逐步减小），adaptive（自适应） 可选。
+- learning_rate_init: 初始学习率，用于随机梯度下降时更新权重。
+- max_iter: 最大迭代次数。
+- shuffle: 决定每次迭代是否重新打乱样本。
+- random_state: 随机数种子。
+- tol: 优化求解的容忍度，当两次迭代损失差值小于该容忍度时，模型认为达到收敛并且训练停止
+
 ### sklearn.datasets
 
 #### load_digits
