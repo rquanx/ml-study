@@ -344,6 +344,93 @@ for i, image in enumerate(faces.images[:5]):
 
 ## 库
 
+### TensorFlow
+
+基础属性：数据，数据类型和形状
+
+- tf.Variable：变量 Tensor，需要指定初始值，常用于定义可变参数，例如神经网络的权重。
+
+- tf.constant：常量 Tensor，需要指定初始值，定义不变化的张量。
+
+```python
+import tensorflow as tf
+
+v = tf.Variable([[1, 2], [3, 4]])  # 形状为 (2, 2) 的二维变量
+v
+```
+
+```python
+c = tf.constant([[1, 2], [3, 4]])  # 形状为 (2, 2) 的二维常量
+c
+```
+
+```python
+# 输出张量的 NumPy 数组
+c.numpy()
+```
+
+
+- tf.zeros：新建指定形状且全为 0 的常量 Tensor
+
+- tf.zeros_like：参考某种形状，新建全为 0 的常量 Tensor
+
+- tf.ones：新建指定形状且全为 1 的常量 Tensor
+
+- tf.ones_like：参考某种形状，新建全为 1 的常量 Tensor
+
+- tf.fill：新建一个指定形状且全为某个标量值的常量 Tensor
+
+- tf.linspace：创建一个等间隔序列。
+
+- tf.range：创建一个数字序列。
+
+- tf.matmul: 矩阵乘法
+
+```python
+a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3])
+b = tf.constant([7.0, 8.0, 9.0, 10.0, 11.0, 12.0], shape=[3, 2])
+
+c = tf.linalg.matmul(a, b)  # 矩阵乘法
+c
+```
+
+- tf.linalg.matrix_transpose：转置矩阵
+- tf.cast：数据类型转换
+	- `tf.cast(tf.constant(df[["X0", "X1"]].values), tf.float32)`
+- tf.nn.sigmoid: sigmoid 函数
+- tf.losses.mean_squared_error：MSE 损失函数
+- tf.reduce_mean：求和?
+- tf.optimizers.SGD：随机梯度下降优化器
+- tf.random.normal：生成随机数
+- tf.nn.relu：relu 函数
+- tf.optimizers.Adam： adam 优化器
+- tf.argmax：取值最大的索引
+- matrix_inverse: 
+
+#### 常用模块
+
+- tf.：包含了张量定义，变换等常用函数和类。
+
+- tf.data：输入数据处理模块，提供了像 tf.data.Dataset 等类用于封装输入数据，指定批量大小等。
+
+- tf.image：图像处理模块，提供了像图像裁剪，变换，编码，解码等类。
+
+- tf.keras：原 Keras 框架高阶 API。包含原 tf.layers 中高阶神经网络层。
+
+- tf.linalg：线性代数模块，提供了大量线性代数计算方法和类。
+
+- tf.losses：损失函数模块，用于方便神经网络定义损失函数。
+
+- tf.math：数学计算模块，提供了大量数学计算函数。
+
+- tf.saved_model：模型保存模块，可用于模型的保存和恢复。
+
+- tf.train：提供用于训练的组件，例如优化器，学习率衰减策略等。
+
+- tf.nn：提供用于构建神经网络的底层函数，以帮助实现深度神经网络各类功能层。
+
+- tf.estimator：高阶 API，提供了预创建的 Estimator 或自定义组件
+
 ### mlxtend
 
 #### preprocessing
@@ -385,6 +472,7 @@ ylim：限定 y 轴范围
 ### numpy
 
 numpy.sum: 可以处理多维数组的加和
+np.random.shuffle：洗牌算法?
 
 poly1d：接收数组生成多项式
 
@@ -408,6 +496,13 @@ np.linalg.eig：计算特征值、特征向量
 np.linalg.norm: 计算欧氏距离
 
 dot: 点乘
+
+ones：根据shape，生成全 1 的数组
+
+subtract: 减法
+
+mean: 平均值
+
 ### pandas
 
 #### [[]]
@@ -872,6 +967,10 @@ X_train, X_test, y_train, y_test = train_test_split(
 - tol: 优化求解的容忍度，当两次迭代损失差值小于该容忍度时，模型认为达到收敛并且训练停止
 
 ### sklearn.datasets
+
+#### fetch_california_housing
+
+加州房价数据
 
 #### load_digits
 
