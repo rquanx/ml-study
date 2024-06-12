@@ -343,6 +343,146 @@ for i, image in enumerate(faces.images[:5]):
 
 
 ## 库
+### PyTorch
+
+简述：
+机器之心 [有一篇文章](https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650726576&idx=3&sn=4140ee7afc67928333e971062d042c59&chksm=871b24ceb06cadd8922cde50cbc5da6a04fd3f00a78964381c593b2dcf62bb78835159a00f27&scene=0#rd) 对各个框架介绍的非常详细
+[PyTorch vs TensorFlow — spotting the difference](https://towardsdatascience.com/pytorch-vs-tensorflow-spotting-the-difference-25c75777377b)
+
+
+#### 模块
+
+| Package（包）                 | Description（描述）                                  |
+| -------------------------- | ------------------------------------------------ |
+| `torch`                    | 张量计算组件, 兼容 NumPy 数组，且具备强大的 GPU 加速支持              |
+| `torch.autograd`           | 自动微分组件, 是 PyTorch 的核心特点，支持 torch 中所有可微分的张量操作     |
+| `torch.nn`                 | 深度神经网络组件, 用于灵活构建不同架构的深度神经网络                      |
+| `torch.optim`              | 优化计算组件, 囊括了 SGD, RMSProp, LBFGS, Adam 等常用的参数优化方法 |
+| `torch.multiprocessing`    | 多进程管理组件，方便实现相同数据的不同进程中共享视图                       |
+| `torch.utils`              | 工具函数组件，包含数据加载、训练等常用函数                            |
+| `torch.legacy(.nn/.optim)` | 向后兼容组件, 包含移植的旧代码                                 |
+#### 支持的类型
+
+https://pytorch.org/docs/stable/tensors.html
+
+| 数据类型 dtype            | CPU 张量               | GPU 张量                    |
+| --------------------- | -------------------- | ------------------------- |
+| 32-bit 浮点             | `torch.FloatTensor`  | `torch.cuda.FloatTensor`  |
+| 64-bit 浮点             | `torch.DoubleTensor` | `torch.cuda.DoubleTensor` |
+| 16-bit 半精度浮点          | N/A                  | `torch.cuda.HalfTensor`   |
+| 8-bit 无符号整形(0~255)    | `torch.ByteTensor`   | `torch.cuda.ByteTensor`   |
+| 8-bit 有符号整形(-128~127) | `torch.CharTensor`   | `torch.cuda.CharTensor`   |
+| 16-bit 有符号整形          | `torch.ShortTensor`  | `torch.cuda.ShortTensor`  |
+| 32-bit 有符号整形          | `torch.IntTensor`    | `torch.cuda.IntTensor`    |
+| 64-bit 有符号整形          | `torch.LongTensor`   | `torch.cuda.LongTensor`   |
+|                       |                      |                           |
+
+#### 便捷方法
+
+| 方法                      | 描述                              |
+| ----------------------- | ------------------------------- |
+| `ones(*sizes)`          | 创建全为 1 的 Tensor                 |
+| `zeros(*sizes)`         | 创建全为 0 的 Tensor                 |
+| `eye(*sizes)`           | 创建对角线为 1，其他为 0 的 Tensor         |
+| `arange(s, e, step)`    | 创建从 s 到 e，步长为 step 的 Tensor     |
+| `linspace(s, e, steps)` | 创建从 s 到 e，均匀切分成 steps 份的 Tensor |
+| `rand/randn(*sizes)`    | 创建均匀/标准分布的 Tensor               |
+| `normal(mean, std)`     | 创建正态分布分布的 Tensor                |
+| `randperm(m)`           | 创建随机排列的 Tensor                  |
+
+| 方法                                 | 描述                |
+| ---------------------------------- | ----------------- |
+| `mean` / `sum` / `median` / `mode` | 均值 / 和 / 中位数 / 众数 |
+| `norm` / `dist`                    | 范数 / 距离           |
+| `std` / `var`                      | 标准差 / 方差          |
+| `cumsum` / `cumprod`               | 累加 / 累乘           |
+
+|方法|描述|
+|---|---|
+|`abs` / `sqrt` / `div` / `exp` / `fmod` / `log` / `pow`|绝对值 / 平方根 / 除法 / 指数 / 求余 / 求幂…|
+|`cos` / `sin` / `asin` / `atan2` / `cosh`|三角函数|
+|`ceil` / `round` / `floor` / `trunc`|上取整 / 四舍五入 / 下取整 / 只保留整数部分|
+|`clamp(input, min, max)`|超过 min 和 max 部分截断|
+|`sigmod` / `tanh`|常用激活函数|
+#### 线性代数
+
+| 方法              | 描述          |
+| --------------- | ----------- |
+| `trace`         | 对角线元素之和     |
+| `diag`          | 对角线元素       |
+| `triu` / `tril` | 上三角 / 下三角矩阵 |
+| `mm`            | 矩阵乘法        |
+| `t`             | 转置          |
+| `inverse`       | 求逆矩阵        |
+| `svd`           | 奇异值分解       |
+
+```python
+# 矩阵的叉乘
+b.mm(a), b.matmul(a)
+```
+
+
+#### 索引、切片、变换
+
+
+`reshape()`，`resize()` 和 `view()`，三者直接的区别在于：`resize()` 和 `view()` 执行变换时和原 Tensor 共享内存，即修改一个，另外一个也会跟着改变。而 `reshape()` 则会复制到新的内存区块上
+
+```python
+c = t.rand(5, 4)
+
+# 取第 1 行
+c[0]
+
+# 取第 1 列
+c[:, 0]
+
+# 形状做出改变
+c.reshape(4, 5)
+c.view(4, 5)
+```
+
+
+#### 张量结构
+
+![image.png](https://fastly.jsdelivr.net/gh/rquanx/my-statics@master/images/20240613003057.png)
+
+#### 自动微分 Autograd
+
+根据前向传播过程自动构建计算图，并自动完成反向传播而不需要手动去实现反向传播的过程
+
+torch.Tensor
+- `data`：数据，也就是对应的 Tensor。
+- `grad`：梯度，也就是 Tensor 对应的梯度，注意 `grad` 同样是 `torch.Tensor` 对象。
+- `grad_fn`：梯度函数，用于构建计算图并自动计算梯度。
+
+#### 基础用法
+
+```python
+# 创建张量
+t.Tensor([1, 2, 3])
+
+import numpy as np
+t.Tensor(np.random.randn(3))
+
+# 通过 `shape` 查看 Tensor 的形状
+t.Tensor([[1, 2], [3, 4], [5, 6]]).shape
+
+# 数学运算
+a = t.Tensor([[1, 2], [3, 4]])
+b = t.Tensor([[5, 6], [7, 8]])
+
+print(a + b)
+print(a - b)
+
+# 对 a 求列平均
+a.mean(dim=0)
+
+# a 中的每个元素求平方
+a.pow(2)
+
+
+```
+
 
 ### TensorFlow
 
@@ -430,6 +570,124 @@ c
 - tf.nn：提供用于构建神经网络的底层函数，以帮助实现深度神经网络各类功能层。
 
 - tf.estimator：高阶 API，提供了预创建的 Estimator 或自定义组件
+
+
+####  tf.keras
+
+##### 顺序模型
+
+大大简化了模型定义过程
+
+[全部优化器列表](https://tensorflow.google.cn/api_docs/python/tf/keras/optimizers)
+[全部损失函数列表](https://tensorflow.google.cn/api_docs/python/tf/losses)
+[名称列表](https://keras.io/zh/losses/)
+
+
+```python
+model = tf.keras.models.Sequential()  # 定义顺序模型
+
+# 添加全连接层
+model.add(tf.keras.layers.Dense(units=30, activation=tf.nn.relu))  # 输出 30，relu 激活
+model.add(tf.keras.layers.Dense(units=10, activation=tf.nn.softmax))  # 输出 10，softmax 激活
+
+# adam 优化器 + 交叉熵损失 + 准确度评估
+model.compile(
+    optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"]
+)
+
+# 损失函数需要根据网络的输出形状和真实值的形状来决定
+
+
+
+# 模型训练
+model.fit(X_train, y_train, batch_size=64, epochs=5)
+
+
+# 模型评估
+model.evaluate(X_test, y_test)
+
+
+# 使用参数传入测试数据
+model.fit(X_train, y_train, batch_size=64, epochs=5, validation_data=(X_test, y_test))
+
+
+
+```
+
+
+**全连接层**
+
+Dense(units, activation=None, use_bias=True, kernel_initializer='glorot_uniform', bias_initializer='zeros', kernel_regularizer=None, bias_regularizer=None, activity_regularizer=None, kernel_constraint=None, bias_constraint=None)
+
+- **units**: 正整数，输出空间维度。
+- **activation**: 激活函数。若不指定，则不使用激活函数(即， 线性激活: `a(x) = x`)。
+- **use_bias**: 布尔值，该层是否使用偏置项量。
+- **kernel_initializer**: `kernel` 权值矩阵的初始化器。
+- **bias_initializer**: 偏置项量的初始化器.
+- **kernel_regularizer**: 运用到 `kernel` 权值矩阵的正则化函数。
+- **bias_regularizer**: 运用到偏置项的正则化函数。
+- **activity_regularizer**: 运用到层的输出的正则化函数。
+- **kernel_constraint**: 运用到 `kernel` 权值矩阵的约束函数。
+- **bias_constraint**: 运用到偏置项量的约束函数。
+
+
+##### 函数模型
+
+```python
+inputs = tf.keras.Input(shape=(64,))  # 输入层
+x = tf.keras.layers.Dense(units=30, activation="relu")(inputs)  # 中间层
+outputs = tf.keras.layers.Dense(units=10, activation="softmax")(x)  # 输出层
+
+# 函数式 API 需要指定输入和输出
+model = tf.keras.Model(inputs=inputs, outputs=outputs)
+model
+
+
+model.compile(
+    optimizer="adam", loss="sparse_categorical_crossentropy", metrics=["accuracy"]
+)
+
+model.fit(X_train, y_train, batch_size=64, epochs=20, validation_data=(X_test, y_test))
+```
+
+
+##### 模型保存
+
+TensorFlow 模型一般包含 3 类要素，分别是：模型权重值、模型配置乃至优化器配置
+
+```python
+model.save_weights("./weights/model")  # 保存检查点名称为 model，路径为 ./weights
+
+model.load_weights("./weights/model")  # 恢复检查点
+
+# 保存完整的模型，即包含模型权重值、模型配置乃至优化器配置等，模型直接拿去推理
+model.save("model.h5")  # 保存完整模型
+
+model_ = tf.keras.models.load_model("model.h5")  # 调用模型
+
+# 查看 Keras 模型结构，包含神经网络层和参数等详细数据
+model_.summary()
+
+preds = model_.predict(X_test[:3])  # 预测前 3 个测试样本
+preds
+```
+
+#### Estimator 高阶 API
+
+TensorFlow 中的高阶 API，它可以将模型的训练、预测、评估、导出等操作封装在一起，构成一个 Estimator
+
+
+一般步骤：
+1. 创建一个或多个输入函数。
+2. 定义模型的特征列。
+3. 实例化 Estimator，指定特征列和各种超参数。
+4. 在 Estimator 对象上调用一个或多个方法，传递适当的输入函数作为数据的来源
+
+
+#### api 总结
+
+封装程度： tf.estimator > tf.keras > tf.nn
+
 
 ### mlxtend
 
