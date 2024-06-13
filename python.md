@@ -291,6 +291,14 @@ x_temp = [i for i in range(0,300)]
 x = [f(tvParams[0],i) for i in x_temp]
 > 语法 [expression for i in iterable]
 
+## 类
+
+```python
+# 继承 nn.Module
+class Net(nn.Module):
+	pass
+```
+
 ## 函数
 
 ### sum
@@ -352,15 +360,15 @@ for i, image in enumerate(faces.images[:5]):
 
 #### 模块
 
-| Package（包）                 | Description（描述）                                  |
-| -------------------------- | ------------------------------------------------ |
-| `torch`                    | 张量计算组件, 兼容 NumPy 数组，且具备强大的 GPU 加速支持              |
-| `torch.autograd`           | 自动微分组件, 是 PyTorch 的核心特点，支持 torch 中所有可微分的张量操作     |
-| `torch.nn`                 | 深度神经网络组件, 用于灵活构建不同架构的深度神经网络                      |
-| `torch.optim`              | 优化计算组件, 囊括了 SGD, RMSProp, LBFGS, Adam 等常用的参数优化方法 |
-| `torch.multiprocessing`    | 多进程管理组件，方便实现相同数据的不同进程中共享视图                       |
-| `torch.utils`              | 工具函数组件，包含数据加载、训练等常用函数                            |
-| `torch.legacy(.nn/.optim)` | 向后兼容组件, 包含移植的旧代码                                 |
+| Package（包）                 | Description（描述）                                                                                                                                                                                                                |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `torch`                    | 张量计算组件, 兼容 NumPy 数组，且具备强大的 GPU 加速支持                                                                                                                                                                                            |
+| `torch.autograd`           | 自动微分组件, 是 PyTorch 的核心特点，支持 torch 中所有可微分的张量操作                                                                                                                                                                                   |
+| `torch.nn`                 | 深度神经网络组件, 用于灵活构建不同架构的深度神经网络<br>- 全连接层：`torch.nn.Linear()`<br>- MSE 损失函数类：`torch.nn.MSELoss()`<br>- torch.nn.functional<br>  - 神经网络层，激活函数，损失函数<br>  - torch.nn.functional.linear()<br>  - torch.nn.functionalmse_loss()<br><br> |
+| `torch.optim`              | 优化计算组件, 囊括了 SGD, RMSProp, LBFGS, Adam 等常用的参数优化方法                                                                                                                                                                               |
+| `torch.multiprocessing`    | 多进程管理组件，方便实现相同数据的不同进程中共享视图                                                                                                                                                                                                     |
+| `torch.utils`              | 工具函数组件，包含数据加载、训练等常用函数                                                                                                                                                                                                          |
+| `torch.legacy(.nn/.optim)` | 向后兼容组件, 包含移植的旧代码                                                                                                                                                                                                               |
 #### 支持的类型
 
 https://pytorch.org/docs/stable/tensors.html
@@ -455,6 +463,52 @@ torch.Tensor
 - `grad`：梯度，也就是 Tensor 对应的梯度，注意 `grad` 同样是 `torch.Tensor` 对象。
 - `grad_fn`：梯度函数，用于构建计算图并自动计算梯度。
 
+#### 数据加载器
+
+```python
+import torch
+
+# 训练数据打乱，使用 64 小批量
+train_loader = torch.utils.data.DataLoader(dataset=train, batch_size=64, shuffle=True)
+
+# 测试数据无需打乱，使用 64 小批量
+test_loader = torch.utils.data.DataLoader(dataset=test, batch_size=64, shuffle=False)
+```
+
+#### 构建神经网络
+
+```python
+# 通过基础 api 一步一步构建
+import torch.nn as nn
+import torch.nn.functional as F
+
+
+class Net(nn.Module):
+    def __init__(self):
+        super(Net, self).__init__()
+        self.fc1 = nn.Linear(784, 512)  # 784 是因为训练是我们会把 28*28 展平
+        self.fc2 = nn.Linear(512, 128)  # 使用 nn 类初始化线性层（全连接层）
+        self.fc3 = nn.Linear(128, 10)
+
+    def forward(self, x):
+        x = F.relu(self.fc1(x))  # 直接使用 relu 函数，也可以自己初始化一个 nn 下面的 Relu 类使用
+        x = F.relu(self.fc2(x))
+        x = self.fc3(x)  # 输出层一般不激活
+        return x
+
+
+# Sequential 容器结构
+model_s = nn.Sequential(
+    nn.Linear(784, 512),  # 线性类
+    nn.ReLU(),  # 激活函数类
+    nn.Linear(512, 128),
+    nn.ReLU(),
+    nn.Linear(128, 10),
+)
+
+
+```
+
 #### 基础用法
 
 ```python
@@ -482,6 +536,8 @@ a.pow(2)
 
 
 ```
+
+
 
 
 ### TensorFlow
