@@ -630,6 +630,24 @@ c
 
 ####  tf.keras
 
+- `tf.keras.layers.Conv1D` [🔗](https://tensorflow.google.cn/api_docs/python/tf/keras/layers/Conv1D)：一般用于文本或时间序列上的一维卷积。
+    
+- `tf.keras.layers.Conv2D` [🔗](https://tensorflow.google.cn/api_docs/python/tf/keras/layers/Conv2D)：一般用于图像空间上的二维卷积。
+    
+- `tf.keras.layers.Conv3D` [🔗](https://tensorflow.google.cn/api_docs/python/tf/keras/layers/Conv3D)。一般用于处理视频等包含多帧图像上的三维卷积。
+
+	- `filters`: 卷积核数量，整数。
+    
+	- `kernel_size`: 卷积核尺寸，元组。
+    
+	- `strides`: 卷积步长，元组。
+    
+	- `padding`: `"valid"` 或 `"same"`。
+		- valid: 无法被卷积的像素将被丢弃
+		- same: 通过 `0` 填补保证每一个输入像素都能被卷积
+- tf.keras.layers.AveragePooling2D: 平均池化
+- tf.keras.layers.Flatten()：展开数据，最后进行全连接时使用？
+
 ##### 顺序模型
 
 大大简化了模型定义过程
