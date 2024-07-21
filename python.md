@@ -1,5 +1,6 @@
 
 ## datetime 对象
+
 ```python
 import datetime
 
@@ -353,7 +354,6 @@ for i, image in enumerate(faces.images[:5]):
 ## 库
 ### PyTorch
 
-简述：
 机器之心 [有一篇文章](https://mp.weixin.qq.com/s?__biz=MzA3MzI4MjgzMw==&mid=2650726576&idx=3&sn=4140ee7afc67928333e971062d042c59&chksm=871b24ceb06cadd8922cde50cbc5da6a04fd3f00a78964381c593b2dcf62bb78835159a00f27&scene=0#rd) 对各个框架介绍的非常详细
 [PyTorch vs TensorFlow — spotting the difference](https://towardsdatascience.com/pytorch-vs-tensorflow-spotting-the-difference-25c75777377b)
 
@@ -565,6 +565,7 @@ c
 c.numpy()
 ```
 
+#### 常用方法
 
 - tf.zeros：新建指定形状且全为 0 的常量 Tensor
 
@@ -671,21 +672,14 @@ model.compile(
 
 # 损失函数需要根据网络的输出形状和真实值的形状来决定
 
-
-
 # 模型训练
 model.fit(X_train, y_train, batch_size=64, epochs=5)
-
 
 # 模型评估
 model.evaluate(X_test, y_test)
 
-
 # 使用参数传入测试数据
 model.fit(X_train, y_train, batch_size=64, epochs=5, validation_data=(X_test, y_test))
-
-
-
 ```
 
 
@@ -765,33 +759,32 @@ TensorFlow 中的高阶 API，它可以将模型的训练、预测、评估、�
 
 ### mlxtend
 
-#### preprocessing
+#### mlxtend.preprocessing
 
-##### TransactionEncoder
+**TransactionEncoder**
 
 将列表数据转换为 Apriori 算法 API 可用的格式
 
 类似于独热编码，可以提取数据集中的不重复项，并将每个数据转换为等长度的布尔值表示
 
-#### frequent_patterns
+#### mlxtend.frequent_patterns
 
-##### apriori
+- apriori：寻找频繁项集
+- association_rules：生成关联规则
 
-寻找频繁项集
+### matplotlib
 
-##### association_rules
+#### matplotlib.pyplot
 
-生成关联规则
+- plot: 画线
+- scatter：画散点
+  - alpha： 绘制点的透明度
+  - c: 绘制点的颜色？
+  - cmap：按类别进行颜色合并？
+- legend: 绘制LabeL
+- imshow：绘制图像，只要是二维数据即可，不需要额外处理
+- ylim：限定 y 轴范围
 
-### matplotlib.pyplot
-
-plot: 画线
-scatter：画散点
-- alpha： 绘制点的透明度
-- c: 绘制点的颜色？
-- cmap：按类别进行颜色合并？
-
-legend: 绘制LabeL
 ```py
 from matplotlib import pyplot as plt
 
@@ -799,53 +792,44 @@ from matplotlib import pyplot as plt
 %matplotlib inline
 ```
 
-imshow：绘制图像，只要是二维数据即可，不需要额外处理
-ylim：限定 y 轴范围
+
 ### numpy
 
-numpy.sum: 可以处理多维数组的加和
-np.random.shuffle：洗牌算法?
-
-poly1d：接收数组生成多项式
-
-np.linspace: 通过定义均匀间隔创建数值序列,
-> linspace(start,end,size) size是间隔，算上终点和起始
-> 0,100,11, 即 0 ~ 100，并且加上0、80总共11个值， 刚好是0、1、2、3、4、5、6、7、8、9、10， 11个数值
-
-np.martix.I: 逆矩阵 A^-1
-
-argmin: 排序后最小的元素的索引
-
-argsort：从小到大排序后的索引数组
-
-
-cov：协方差矩阵计算
-
-mat：转矩阵？
-
-np.linalg.eig：计算特征值、特征向量
-
-np.linalg.norm: 计算欧氏距离
-
-dot: 点乘
-
-ones：根据shape，生成全 1 的数组
-
-subtract: 减法
-
-mean: 平均值
+- numpy.sum: 可以处理多维数组的加和
+- np.random.shuffle：洗牌算法?
+- poly1d：接收数组生成多项式
+- np.linspace: 通过定义均匀间隔创建数值序列,
+  - linspace(start,end,size) size是间隔，算上终点和起始
+  - 0,100,11, 即 0 ~ 100，并且加上0、80总共11个值， 刚好是0、1、2、3、4、5、6、7、8、9、10， 11个数值
+- np.martix.I: 逆矩阵 A^-1
+- argmin: 排序后最小的元素的索引
+- argsort：从小到大排序后的索引数组
+- cov：协方差矩阵计算
+- mat：转矩阵？
+- np.linalg.eig：计算特征值、特征向量
+- np.linalg.norm: 计算欧氏距离
+- dot: 点乘
+- ones：根据shape，生成全 1 的数组
+- subtract: 减法
+- mean: 平均值
 
 ### pandas
 
-#### [[]]
+#### 运算符
 
-取出多列,数据类型是dataframe，列名会作为表头，在展示时使用，计算时会忽略列名
+- [[]]：取出多列,数据类型是dataframe，列名会作为表头，在展示时使用，计算时会忽略列名
+- []：取出单列,类型是Series，列名只作为标记？不会被展示
 
-#### []
+#### 常用方法
 
-取出单列,类型是Series，列名只作为标记？不会被展示
+- get_dummies：独热编码
+- head：读取前5行
+- tail: 读取最后5行
+- columns: 读取或者更新表头
+- describe: 它用于生成有关数据的统计摘要。这个统计摘要包括了数据列的数量、均值、标准差、最小值、25% 分位数、中位数（50% 分位数）、75% 分位数和最大值
+- 
 
-#### loc、iloc
+**loc、iloc**
 
 loc：按照行、列 label进行选取
 loc[[False, False, True]]：False意为跳过，不选取，True自然为选取
@@ -855,7 +839,7 @@ ature_data = lilac_data.iloc[:, :-1]
 loc(): 基于label（或者是boolean数组）进行数据选择
 iloc(): 基于position(整数-integer)进行数据选择
 
-#### read_csv
+**read_csv**
 
 ```python
 pd.read_csv(xx) # 读取数据，行默认以数字作为索引
@@ -865,7 +849,7 @@ pd.read_csv(xx，head=None) # 忽略行？
     df = pd.read_csv("GOOGL.csv", index_col=0)
 ```
 
-#### resample
+**resample**
 
 ```python
 # 重采样，对每一列进行聚合，取平均或则总和，
@@ -873,39 +857,22 @@ pd.read_csv(xx，head=None) # 忽略行？
 df = df.resample('Q').agg({"Open": 'mean', "High": 'mean', "Low": 'mean',
                                "Close": 'mean', "Adj Close": 'mean', "Volume": 'sum'})
 ```
-#### get_dummies
-
-独热编码
-
-#### sort_values
+**sort_values**
 
 ```python
 # 按 Volume 排序
 df = df.sort_values(by='Volume', ascending=False)
 ```
 
-#### head
-
-读取前5行
-
-#### tail
-读取最后5行
-
-#### to_numeric
+**to_numeric**
 
 ```python
 
 # 将某一列数据转成数值
 df['Rings'] = pd.to_numeric(df['Rings'])
 ```
-#### columns
 
-```python
-
-df.columns # 读取或者更新表头
-```
-
-#### drop
+**drop**
 
 ```python
 
@@ -913,14 +880,14 @@ df.columns # 读取或者更新表头
 dx.drop(dx.index[-1])
 ```
 
-#### replace
+**replace**
 
 ```python
 # 将某一列的某些值进行更新，replace方法已经被废弃！
 df['Sex'] = df.Sex.replace({'M':0, 'F':1, 'I':2})
 ```
 
-#### cut
+**cut**
 
 ```python
 
@@ -928,21 +895,15 @@ df['Sex'] = df.Sex.replace({'M':0, 'F':1, 'I':2})
 df['Rings'] = pd.cut(df.Rings, bins=[0, 10, 20, 30], labels=['small','middle','large'])
 ```
 
-#### describe
-
-它用于生成有关数据的统计摘要。这个统计摘要包括了数据列的数量、均值、标准差、最小值、25% 分位数、中位数（50% 分位数）、75% 分位数和最大值
-
-#### concat
+**concat**
 
 axis 默认为0,也就是纵向上进行合并。沿着连接的轴,1 就是横向合并
 1： concat就是行对齐，然后将不同列名称的两张表合并
 print(pd.concat([features, target], axis=1).head())
 
-#### plotting
+#### pandas.plotting
 
-##### autocorrelation_plot
-
-绘制自相关图
+- autocorrelation_plot：绘制自相关图
 
 ### jupyter notebook
 
@@ -950,47 +911,25 @@ print(pd.concat([features, target], axis=1).head())
 
 `%matplotlib inline`:的作用是将Matplotlib图形嵌入到Notebook单元格中，使得图形能够在Notebook中直接显示，而不是在新窗口中弹出
 
-### sklearn.cluster
+### sklearn
 
-##### MeanShift
+#### sklearn.cluster
 
-均值漂移聚类
+- MeanShift：均值漂移聚类
 
-##### AffinityPropagation
+- AffinityPropagation：亲和传播聚类
+  - damping：阻尼因子，避免数值振荡。
+  - max_iter：最大迭代次数。
+  - affinity：亲和评价方法，默认为欧式距离。
+- SpectralClustering：谱聚类
+- DBSCAN：密度聚类
+- hierarchy
+- linkage：进行层次聚类/凝聚聚类
+- dendrogram：绘制聚类数
+- Birch：Birch 聚类
+- MiniBatchKMeans
 
-亲和传播聚类
-
-- damping：阻尼因子，避免数值振荡。
-- max_iter：最大迭代次数。
-- affinity：亲和评价方法，默认为欧式距离。
-
-##### SpectralClustering
-
-谱聚类
-
-#### DBSCAN
-
-密度聚类
-
-#### hierarchy
-
-##### linkage
-
-进行层次聚类/凝聚聚类
-
-##### dendrogram
-
-绘制聚类数
-
-
-
-#### Birch
-
-Birch 聚类
-
-#### MiniBatchKMeans
-
-#### AgglomerativeClustering
+**AgglomerativeClustering**
 
 层次聚类
 
@@ -1000,7 +939,7 @@ metric: 有 euclidean（欧式距离）, l1（L1 范数）, l2（L2 范数）, m
 
 linkage: 连接方法：ward（单连接）, complete（全连接）, average（平均连接）可选。
 
-#### k_means
+**k_means**
 
 聚类直接实现
 
@@ -1009,10 +948,9 @@ linkage: 连接方法：ward（单连接）, complete（全连接）, average（
 - `n_clusters`：表示聚类的个数，也就是 K 值。
 
 
+#### sklearn.decomposition
 
-### sklearn.decomposition
-
-#### PCA
+**PCA**
 
 数据降维
 
@@ -1025,12 +963,12 @@ whiten= 白化表示将特征之间的相关性降低，并使得每个特征具
 svd_solver= 表示奇异值分解 SVD 的方法。有 4 参数，分别是：auto, full, arpack, randomized。
 
 
-### sklearn.linear_model
+#### sklearn.linear_model
 
-#### LogisticRegression
-
-
-#### Ridge
+- LogisticRegression
+- mean_absolute_error: mae
+- mean_squared_error: mse
+**Ridge**
 
 岭回归
 
@@ -1040,7 +978,7 @@ ridge_model.fit(x, y)
 ridge_model.coef_  # 打印模型参数
 ```
 
-#### Lasso
+**Lasso**
 
 ```py
 lasso = Lasso(alpha=a, fit_intercept=False)
@@ -1048,7 +986,7 @@ lasso.fit(x, y)
 lasso.coef_
 ```
 
-#### LinearRegression
+**LinearRegression**
 
 线性回归模型
 
@@ -1063,17 +1001,87 @@ model.fit(x.reshape(x.shape[0], 1), y)  # 训练, reshape 操作把数据处理�
 model.intercept_, model.coef_
 ```
 
-#### mean_absolute_error
+#### sklearn.model_selection
 
-mae
+- KFold：进行K折数据
+- cross_val_score：k折数据，交叉验证
 
-#### mean_squared_error
 
-mse
+#### sklearn.naive_bayes
 
-### scipy.linalg
+伯努利模型
 
-#### hilbert
+**train_test_split**
+
+```py
+# X_train,X_test, y_train, y_test 分别表示，切分后的特征的训练集，特征的测试集，标签的训练集，标签的测试集；其中特征和标签的值是一一对应的。
+
+# train_data,train_target分别表示为待划分的特征集和待划分的标签集。
+
+# test_size：测试样本所占比例。
+
+# random_state：随机数种子,在需要重复实验时，保证在随机数种子一样时能得到一组一样的随机数。
+
+X_train, X_test, y_train, y_test = train_test_split(
+    feature_data, label_data, test_size=0.3, random_state=2
+)
+```
+
+
+#### sklearn.neural_network
+
+
+**MLPClassifier**
+
+实现了具有反向传播算法的多层神经网络结构
+
+- hidden_layer_sizes: 定义隐含层及包含的神经元数量，(20, 20) 代表 2 个隐含层各有 20 个神经元。
+- activation: 激活函数，有 identity（线性）, logistic, tanh, relu 可选。
+- solver: 求解方法，有 lbfgs（拟牛顿法），sgd（随机梯度下降），adam（改进型 sgd） 可选。adam 在相对较大的数据集上效果比较好（上千个样本），对小数据集而言，lbfgs 收敛更快效果也很好。 
+- alpha: 正则化项参数。
+- learning_rate: 学习率调整策略，constant（不变），invscaling（逐步减小），adaptive（自适应） 可选。
+- learning_rate_init: 初始学习率，用于随机梯度下降时更新权重。
+- max_iter: 最大迭代次数。
+- shuffle: 决定每次迭代是否重新打乱样本。
+- random_state: 随机数种子。
+- tol: 优化求解的容忍度，当两次迭代损失差值小于该容忍度时，模型认为达到收敛并且训练停止
+
+#### sklearn.datasets
+
+- fetch_california_housing：加州房价数据
+- make_moons：生成月牙状数据
+- make_circles：生成线性不可分数据
+
+**load_digits**
+
+images：8x8 矩阵，记录每张手写字符图像对应的像素灰度值
+
+data：将 images 对应的 8x8 矩阵转换为行向量
+
+target：记录 1797 张影像各自代表的数字
+
+数据集：包含由 1797 张数字 0 到 9 的手写字符影像转换后的数字矩阵，目标值是 0-9
+
+**make_blobs**
+
+生成特定的团状数据
+
+- `n_samples`：表示生成数据总个数,默认为 100 个。
+    
+- `n_features`：表示每一个样本的特征个数，默认为 2 个。
+    
+- `centers`：表示中心点的个数，默认为 3 个。
+    
+- `center_box`：表示每一个中心的边界,默认为 -10.0到10.0。
+    
+- `random_state`：表示生成数据的随机数种子。
+
+
+### scipy
+
+#### scipy.linalg
+
+**hilbert**
 
 ```py
 from scipy.linalg import hilbert
@@ -1081,9 +1089,9 @@ from scipy.linalg import hilbert
 x = hilbert(10)
 ```
 
-### scipy.optimize
+#### scipy.optimize
 
-####  leastsq
+**leastsq**
 
 ```py
 from scipy.optimize import leastsq
@@ -1095,18 +1103,16 @@ p_init = np.random.randint(1, 2, 10)  # 全部参数初始化为 1
 parameters = leastsq(err_func, p_init, args=(x, y))  # 最小二乘法求解
 ```
 
-### sklearn.preprocessing
+#### sklearn.preprocessing
 
-#### scale
+**scale**
 
 规范化处理
 
 将特征数据的分布调整成标准正太分布，也叫高斯分布
 即使得数据的均值维0，方差为1
 
-
-
-#### PolynomialFeatures
+**PolynomialFeatures**
 
 构造特征矩阵
 
@@ -1125,68 +1131,33 @@ poly_features = PolynomialFeatures(degree=2, include_bias=False)
 poly_x = poly_features.fit_transform(x)
 ```
 
-### sklearn.pipeline
+#### sklearn.pipeline
 
-#### make_pipeline
+- make_pipeline：多模型组合
 
-多模型组合
+#### sklearn.tree
 
-### sklearn.tree
+- DecisionTreeClassifier：建立 决策树
 
-#### DecisionTreeClassifier
+#### sklearn.ensemble
 
-建立 决策树
+- BaggingClassifier：建立 Bagging Tree
+- RandomForestClassifier：建立随机森林
+- AdaBoostClassifier：建立 AdaBoost 
+- GradientBoostingClassifier：梯度提升树 GBDT
+- VotingClassifier：投票分类器，组合多个分类器进行投票
 
-### sklearn.ensemble
+#### sklearn.metrics
 
-#### BaggingClassifier
+- accuracy_score：判断输入两个数据间的相同率？
+  - 判断模型预测的准确率
+- precision_score：查准率计算
+- recall_score：计算召回率
+- f1_score：f1计算
+- roc_curve：计算ROC曲线
+- auc：计算auc
 
-建立 Bagging Tree
-
-#### RandomForestClassifier
-
-建立随机森林
-
-#### AdaBoostClassifier
-
-建立 AdaBoost 
-
-#### GradientBoostingClassifier
-
-梯度提升树 GBDT
-
-#### VotingClassifier
-
-投票分类器，组合多个分类器进行投票
-
-### sklearn.metrics
-
-#### accuracy_score
-
-判断输入两个数据间的相同率？
-> 判断模型预测的准确率
-
-#### precision_score
-
-查准率计算
-
-#### recall_score
-
-计算召回率
-
-#### f1_score
-
-f1计算
-
-#### roc_curve
-
-计算ROC曲线
-
-#### auc
-
-计算auc
-
-#### r2_score
+**r2_score**
 
 R方计算
 
@@ -1197,45 +1168,36 @@ from sklearn.metrics import r2_score
 r2_score(y1, model1.predict(x)), r2_score(y2, model2.predict(x))
 ```
 
+#### sklearn.svm
+
+- SVC：支持向量机分类器
+
 ### joblib
 
 保存模型，模型存为 `.pkl` 二进制文件
 
-### sklearn.svm
+### statsmodels
 
-#### SVC
+#### statsmodels.tsa.stattools
 
-支持向量机分类器
+- arma_order_select_ic
 
-### statsmodels.api
+#### statsmodels.stats.diagnostic
 
-#### tsa.stattools
-
-##### arma_order_select_ic
-
-
-
-#### stats.diagnostic
-
-##### acorr_ljungbox
+**acorr_ljungbox**
 
 随机序列判断
 
 计算 LB 统计量，默认会返回 LB 统计量和 LB 统计量的 P 值。如果 LB 统计量的 P 值小于 `0.05`，我们则认为该序列为非随机序列，否则就为随机序列
 
-#### graphics.tsaplots
+#### statsmodels.graphics.tsaplots
 
-##### plot_acf
+- plot_acf：绘制自相关图的函数
+- OLS：普通最小二乘法
 
-绘制自相关图的函数
+#### statsmodels.formula.api
 
-#### OLS
-
-普通最小二乘法
-
-### statsmodels.formula.api
-
-#### smf
+**smf**
 
 ```py
 import statsmodels.formula.api as smf
@@ -1245,96 +1207,6 @@ results_smf_full = model_smf_full.fit()
 
 results_smf_full.summary2()  # 输出模型摘要
 ```
-
-
-### sklearn.model_selection
-
-#### KFold
-
-进行K折数据
-
-#### cross_val_score
-
-k折数据，交叉验证
-
-
-### sklearn.naive_bayes
-
-伯努利模型
-
-
-#### train_test_split
-
-```py
-# X_train,X_test, y_train, y_test 分别表示，切分后的特征的训练集，特征的测试集，标签的训练集，标签的测试集；其中特征和标签的值是一一对应的。
-
-# train_data,train_target分别表示为待划分的特征集和待划分的标签集。
-
-# test_size：测试样本所占比例。
-
-# random_state：随机数种子,在需要重复实验时，保证在随机数种子一样时能得到一组一样的随机数。
-
-X_train, X_test, y_train, y_test = train_test_split(
-    feature_data, label_data, test_size=0.3, random_state=2
-)
-```
-
-
-### sklearn.neural_network
-
-
-#### MLPClassifier
-
-实现了具有反向传播算法的多层神经网络结构
-
-- hidden_layer_sizes: 定义隐含层及包含的神经元数量，(20, 20) 代表 2 个隐含层各有 20 个神经元。
-- activation: 激活函数，有 identity（线性）, logistic, tanh, relu 可选。
-- solver: 求解方法，有 lbfgs（拟牛顿法），sgd（随机梯度下降），adam（改进型 sgd） 可选。adam 在相对较大的数据集上效果比较好（上千个样本），对小数据集而言，lbfgs 收敛更快效果也很好。 
-- alpha: 正则化项参数。
-- learning_rate: 学习率调整策略，constant（不变），invscaling（逐步减小），adaptive（自适应） 可选。
-- learning_rate_init: 初始学习率，用于随机梯度下降时更新权重。
-- max_iter: 最大迭代次数。
-- shuffle: 决定每次迭代是否重新打乱样本。
-- random_state: 随机数种子。
-- tol: 优化求解的容忍度，当两次迭代损失差值小于该容忍度时，模型认为达到收敛并且训练停止
-
-### sklearn.datasets
-
-#### fetch_california_housing
-
-加州房价数据
-
-#### load_digits
-
-images：8x8 矩阵，记录每张手写字符图像对应的像素灰度值
-
-data：将 images 对应的 8x8 矩阵转换为行向量
-
-target：记录 1797 张影像各自代表的数字
-
-数据集：包含由 1797 张数字 0 到 9 的手写字符影像转换后的数字矩阵，目标值是 0-9
-
-#### make_moons
-
-生成月牙状数据
-
-#### make_blobs
-
-生成特定的团状数据
-
-- `n_samples`：表示生成数据总个数,默认为 100 个。
-    
-- `n_features`：表示每一个样本的特征个数，默认为 2 个。
-    
-- `centers`：表示中心点的个数，默认为 3 个。
-    
-- `center_box`：表示每一个中心的边界,默认为 -10.0到10.0。
-    
-- `random_state`：表示生成数据的随机数种子。
-
-#### make_circles
-
-生成线性不可分数据
 
 ### jieba
 
@@ -1348,15 +1220,15 @@ target：记录 1797 张影像各自代表的数字
 
 通过子线程实现进度显示？
 
-### gensim.models
+### gensim
 
-#### Word2Vec
+#### gensim.models
 
-文字转向量
+- Word2Vec：文字转向量
 
-### ipywidgets
+#### gensim.ipywidgets
 
-#### interact
+**interact**
 
 允许在图表中，增加可交互的可调节参数，看不同参数下效果
 
