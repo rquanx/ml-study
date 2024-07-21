@@ -2,3 +2,5 @@
 .virtual_documents
 .obsidian
 **/MNIST/*
+**/dogs_cats/*
+data

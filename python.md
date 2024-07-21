@@ -1243,3 +1243,16 @@ def change_c(c):
 
 interact(change_c, c=[1, 10000, 1000000])
 ```
+
+### torchvision
+
+#### torchvision.transforms
+
+- ToPILImage：加载图片并转换为 PIL IMAGE
+- Resize：尺寸变形
+- RandomCrop：随机裁剪
+- CenterCrop：居中裁剪
+- ToTensor：转张量
+- Normalize：标准化？
+- Compose：组合基础方法
+  - `composed = transforms.Compose([transforms.Resize(256), transforms.RandomCrop(224)])`
