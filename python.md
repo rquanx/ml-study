@@ -351,6 +351,17 @@ for i, image in enumerate(faces.images[:5]):
 重载 [] 能力，pandas 通过重载实现大量数据 hack 操作
 
 
+## 使用
+
+### 请求图片并且保存本地，用于进行推理.....
+
+```python
+res = requests.get(IMAGE_URL)
+with open("test.jpg", "wb") as f:
+    f.write(res.content)
+```
+
+
 ## 库
 ### PyTorch
 
@@ -648,6 +659,10 @@ c
 		- same: 通过 `0` 填补保证每一个输入像素都能被卷积
 - tf.keras.layers.AveragePooling2D: 平均池化
 - tf.keras.layers.Flatten()：展开数据，最后进行全连接时使用？
+- tf.keras.preprocessing.image.load_img： load image to PIL Image instance，可以直接用于展示
+- tf.keras.utils.img_to_array： Converts a PIL Image instance to a NumPy array.
+
+
 
 ##### 顺序模型
 
@@ -812,6 +827,7 @@ from matplotlib import pyplot as plt
 - ones：根据shape，生成全 1 的数组
 - subtract: 减法
 - mean: 平均值
+- expand_dims：在指定的位置插入一个新的轴，从而扩展数组的维度，假设 image_a 原来的形状是 (height, width, channels)，那么经过 np.expand_dims 之后，它的形状将变成 (1, height, width, channels)
 
 ### pandas
 
@@ -909,7 +925,9 @@ print(pd.concat([features, target], axis=1).head())
 
 命令jupyter notebook运行
 
-`%matplotlib inline`:的作用是将Matplotlib图形嵌入到Notebook单元格中，使得图形能够在Notebook中直接显示，而不是在新窗口中弹出
+- `%matplotlib inline`:的作用是将Matplotlib图形嵌入到Notebook单元格中，使得图形能够在Notebook中直接显示，而不是在新窗口中弹出
+- input('xxx'): 在 note book 上显示输入框
+
 
 ### sklearn
 
