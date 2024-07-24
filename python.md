@@ -416,13 +416,13 @@ https://pytorch.org/docs/stable/tensors.html
 | `std` / `var`                      | 标准差 / 方差          |
 | `cumsum` / `cumprod`               | 累加 / 累乘           |
 
-|方法|描述|
-|---|---|
-|`abs` / `sqrt` / `div` / `exp` / `fmod` / `log` / `pow`|绝对值 / 平方根 / 除法 / 指数 / 求余 / 求幂…|
-|`cos` / `sin` / `asin` / `atan2` / `cosh`|三角函数|
-|`ceil` / `round` / `floor` / `trunc`|上取整 / 四舍五入 / 下取整 / 只保留整数部分|
-|`clamp(input, min, max)`|超过 min 和 max 部分截断|
-|`sigmod` / `tanh`|常用激活函数|
+| 方法                                                      | 描述                             |
+| ------------------------------------------------------- | ------------------------------ |
+| `abs` / `sqrt` / `div` / `exp` / `fmod` / `log` / `pow` | 绝对值 / 平方根 / 除法 / 指数 / 求余 / 求幂… |
+| `cos` / `sin` / `asin` / `atan2` / `cosh`               | 三角函数                           |
+| `ceil` / `round` / `floor` / `trunc`                    | 上取整 / 四舍五入 / 下取整 / 只保留整数部分     |
+| `clamp(input, min, max)`                                | 超过 min 和 max 部分截断              |
+| `sigmod` / `tanh`                                       | 常用激活函数                         |
 #### 线性代数
 
 | 方法              | 描述          |
@@ -440,6 +440,9 @@ https://pytorch.org/docs/stable/tensors.html
 b.mm(a), b.matmul(a)
 ```
 
+
+squeeze: 减少维度
+unsqueeze: 前面增加维度
 
 #### 索引、切片、变换
 
