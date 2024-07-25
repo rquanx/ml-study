@@ -4,3 +4,4 @@
 **/MNIST/*
 **/dogs_cats/*
 data
+*.pt
