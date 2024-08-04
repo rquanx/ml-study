@@ -1126,6 +1126,12 @@ parameters = leastsq(err_func, p_init, args=(x, y))  # 最小二乘法求解
 
 #### sklearn.preprocessing
 
+**MinMaxScaler**
+
+```python
+scaler = MinMaxScaler(feature_range=(0, 1))  # 归一化到0、1
+```
+
 **scale**
 
 规范化处理
