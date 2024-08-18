@@ -1126,6 +1126,10 @@ parameters = leastsq(err_func, p_init, args=(x, y))  # 最小二乘法求解
 
 #### sklearn.preprocessing
 
+**OneHotEncoder**
+
+独热编码
+
 **MinMaxScaler**
 
 ```python
